@@ -2,6 +2,7 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Book;
+import org.example.entitiy.BookEntity;
 import org.example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,15 @@ public class BookController {
 
     final BookService service;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // proejct stadened
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED) // project stander
     public void addBook(@RequestBody Book book){
         service.addBook(book);
+    }
+
+    @GetMapping("/get")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Iterable<BookEntity> getBook(){
+        return  service.getBook();
     }
 }
