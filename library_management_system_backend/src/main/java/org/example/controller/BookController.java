@@ -28,7 +28,7 @@ public class BookController {
     }
 
     @GetMapping("/get")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Iterable<BookEntity> getBook(){
         return  service.get();
     }
@@ -39,6 +39,12 @@ public class BookController {
         return  service.delete(id) ?
                     ResponseEntity.ok("Book successfully deleted") :
                     ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/search/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  Book searchById(@PathVariable Long id){
+        return service.searchById(id);
     }
 
 }
