@@ -5,6 +5,7 @@ import org.example.dto.Book;
 import org.example.entitiy.BookEntity;
 import org.example.service.BookService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,12 +35,10 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String delete(@PathVariable Long id){
-        if(service.delete(id)){
-            return "Book successfully deleted";
-        }else{
-            return "Not deleted";
-        }
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return  service.delete(id) ?
+                    ResponseEntity.ok("Book successfully deleted") :
+                    ResponseEntity.notFound().build();
     }
 
 }
