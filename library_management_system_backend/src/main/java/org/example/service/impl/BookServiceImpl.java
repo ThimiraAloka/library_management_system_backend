@@ -35,6 +35,6 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookEntity> getBook() {
-        return (List<BookEntity>) repository.findAll();
+        return  repository.findAll();
     }
 }
