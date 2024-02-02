@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+//study dto and entity
 public class Book {
     private String isbn;
     private String title;
