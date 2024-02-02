@@ -7,6 +7,7 @@ import java.util.Base64;
 import java.util.List;
 
 public interface BookService {
-    void addBook(Book book);
-    List <BookEntity> getBook();
+    void add(Book book);
+    List <BookEntity> get();
+    boolean delete(Long id);
 }

@@ -28,13 +28,23 @@ public class BookServiceImpl implements BookService{
     // me wena demane
 
     @Override
-    public void addBook(Book book) {
+    public void add(Book book) {
         BookEntity entity = mapper.map(book, BookEntity.class);
         repository.save(entity);
     }
 
     @Override
-    public List<BookEntity> getBook() {
+    public List<BookEntity> get() {
         return  repository.findAll();
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
     }
 }
