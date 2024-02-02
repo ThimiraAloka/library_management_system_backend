@@ -20,19 +20,16 @@ public class BookController {
    //BookService service;
 
     final BookService service;
-
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED) // project stander
     public void addBook(@RequestBody Book book){
         service.add(book);
     }
-
     @GetMapping("/get")
     @ResponseStatus(HttpStatus.OK)
     public Iterable<BookEntity> getBook(){
         return  service.get();
     }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> delete(@PathVariable Long id){
@@ -40,11 +37,9 @@ public class BookController {
                     ResponseEntity.ok("Book successfully deleted") :
                     ResponseEntity.notFound().build();
     }
-
     @GetMapping("/search/{id}")
     @ResponseStatus(HttpStatus.OK)
     public  Book searchById(@PathVariable Long id){
         return service.searchById(id);
     }
-
 }

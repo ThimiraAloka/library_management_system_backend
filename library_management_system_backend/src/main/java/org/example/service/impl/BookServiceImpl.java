@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class BookServiceImpl implements BookService{
     @Autowired
     BookRepository repository;
-
     ModelMapper mapper;
     @Bean
     public void setUp(){
@@ -33,12 +31,10 @@ public class BookServiceImpl implements BookService{
         BookEntity entity = mapper.map(book, BookEntity.class);
         repository.save(entity);
     }
-
     @Override
     public List<BookEntity> get() {
         return  repository.findAll();
     }
-
     @Override
     public boolean delete(Long id) {
         if (repository.existsById(id)){
@@ -48,7 +44,6 @@ public class BookServiceImpl implements BookService{
             return false;
         }
     }
-
     @Override
     public Book searchById(Long id) {
        Optional<BookEntity> byId =repository.findById(id);
